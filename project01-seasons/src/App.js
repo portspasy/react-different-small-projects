@@ -1,11 +1,18 @@
 import React from "react";
 
-const App = () => {
-  window.navigator.geolocation.getCurrentPosition(function (position) {
-    console.log("Latitude is :", position.coords.latitude);
-    console.log("Longitude is :", position.coords.longitude);
-  });
-  return <div className="App">Hi There!</div>;
-};
+class App extends React.Component {
+  render() {
+    window.navigator.geolocation.getCurrentPosition(
+      (position) => console.log(position),
+      (err) => console.log(err)
+    );
+    return (
+      <div className="App">
+        <p>Latitude:</p>
+        <p>Longitude:</p>
+      </div>
+    );
+  }
+}
 
 export default App;
