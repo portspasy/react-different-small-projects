@@ -2,8 +2,10 @@ import React from "react";
 import "./search-bar.css";
 
 class SearchBar extends React.Component {
-  onInputChange() {
-    console.log("is Typing");
+  constructor(props) {
+    super(props);
+
+    this.state = { term: "" };
   }
 
   render() {
@@ -15,7 +17,8 @@ class SearchBar extends React.Component {
             <input
               type="text"
               placeholder="Search..."
-              onChange={this.onInputChange}
+              value={this.state.term}
+              onChange={(e) => this.setState({ term: e.target.value })}
             />
           </div>
         </form>
