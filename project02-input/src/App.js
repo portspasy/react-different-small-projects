@@ -4,13 +4,20 @@ import ImageList from "./components/image-list/image-list";
 
 import "./App.css";
 
-const App = () => {
-  return (
-    <div className="App ui container">
-      <SearchBar />
-      <ImageList />
-    </div>
-  );
-};
+class App extends React.Component {
+  onSearchSubmit(term) {
+    console.log("Parent:");
+    console.log(term);
+  }
+
+  render() {
+    return (
+      <div className="App ui container">
+        <SearchBar onSubmit={this.onSearchSubmit} />
+        <ImageList />
+      </div>
+    );
+  }
+}
 
 export default App;
