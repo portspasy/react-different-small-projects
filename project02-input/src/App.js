@@ -7,11 +7,17 @@ import ImageList from "./components/image-list/image-list";
 import "./App.css";
 
 class App extends React.Component {
-  onSearchSubmit(term) {
+  constructor(props) {
+    super(props);
+
+    this.state = { images: [] };
+  }
+
+  onSearchSubmit = async (term) => {
     console.log("Parent:");
     console.log(term);
 
-    axios.get(`https://api.unsplash.com/search/photos`, {
+    const response = await axios.get(`https://api.unsplash.com/search/photos`, {
       params: {
         query: term,
       },
@@ -19,13 +25,17 @@ class App extends React.Component {
         Authorization: "Client-ID YOUR_API_KEY",
       },
     });
-  }
+
+    console.log(response.data.results);
+    this.setState({ images: response.data.results });
+  };
 
   render() {
     return (
       <div className="App ui container">
         <SearchBar onSubmit={this.onSearchSubmit} />
         <ImageList />
+        Found: {this.state.images.length} images
       </div>
     );
   }
