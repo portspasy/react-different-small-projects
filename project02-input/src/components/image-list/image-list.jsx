@@ -1,20 +1,14 @@
 import React from "react";
+
+import ImageCard from "../image-card/image-card";
+
 import "./image-list.css";
 
 const ImageList = (props) => {
-  const images = props.images.map(({ alt_description, id, urls }) => {
+  const images = props.images.map((image) => {
     return (
-      <div className="doubling four wide column" key={id}>
-        <img
-          src={urls.regular}
-          alt={alt_description}
-          style={{
-            width: "100%",
-            maxWidth: "100%",
-            objectFit: "cover",
-            height: "200px",
-          }}
-        />
+      <div className="four wide column" key={image.id}>
+        <ImageCard images={image} />
       </div>
     );
   });
